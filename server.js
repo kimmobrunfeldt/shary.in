@@ -5,6 +5,8 @@ var express = require('express'),
     fs = require('fs'),
     mongoose = require('mongoose');
 
+var multer = require('multer');
+
 /**
  * Main application file
  */
@@ -26,13 +28,13 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   }
 });
 
-// Populate empty DB with sample data
-require('./lib/config/dummydata');
-  
-// Passport Configuration
-var passport = require('./lib/config/passport');
-
 var app = express();
+app.use(multer({
+    dest: config.uploadsDir,
+    limits: {
+        fileSize: 1024 * 1024 * 10  // 10 MB
+    }
+}));
 
 // Express settings
 require('./lib/config/express')(app);

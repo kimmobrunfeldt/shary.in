@@ -13,13 +13,13 @@ function resetView() {
 $(function() {
 
     Dropzone.options.dropzone = {
-        paramName: "file",  // The name that will be used to transfer the file
+        paramName: 'file',  // The name that will be used to transfer the file
         maxFiles: 1,
         maxFilesize: 10,  // MB
         acceptedFiles: 'image/*',
-        dictDefaultMessage: "Upload image",
+        dictDefaultMessage: 'Upload image',
         createImageThumbnails: false,
-        previewsContainer: "#hidden",
+        previewsContainer: '#hidden',
         fallback: function() {
             $('#dropzone').css('color', 'black').css('background-color', 'white');
         }
@@ -28,22 +28,22 @@ $(function() {
     // Disabling autoDiscover, otherwise Dropzone will try to attach twice.
     Dropzone.autoDiscover = false;
 
-    var dropzone = new Dropzone("#dropzone");
+    var dropzone = new Dropzone('#dropzone');
 
-    dropzone.on("success", function(file) {
-        window.location.href = 'image';
+    dropzone.on('success', function(file, response) {
+        window.location.href = response.hash;
     });
 
-    dropzone.on("sending", function(file) {
+    dropzone.on('sending', function(file) {
         fadeToLoader();
     });
 
-    dropzone.on("error", function(file, errorMessage) {
+    dropzone.on('error', function(file, errorMessage) {
         window.alert(errorMessage);
         resetView();
     });
 
-    dropzone.on("complete", function(file, errorMessage) {
+    dropzone.on('complete', function(file, errorMessage) {
         resetView();
     });
 

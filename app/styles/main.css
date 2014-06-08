@@ -1,9 +1,91 @@
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 
-.file-input {
+.container {
+  padding-top: 50px;
   text-align: center;
-  height: 200px;
 }
+
+.opacity-animate {
+  -webkit-transition: opacity 300ms linear;
+  -moz-transition: opacity 300ms linear;
+  -o-transition: opacity 300ms linear;
+  -ms-transition: opacity 300ms linear;
+  transition: opacity 300ms linear;
+}
+
+.dropzone:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.dropzone {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+  background-color: #008cba;
+  color: white;
+  height: 200px;
+  width: 80%;
+  max-width: 500px;
+  min-width: 240px;
+}
+
+.dropzone span {
+  font-size: 4em;
+}
+
+.dz-message {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.loader-container {
+  margin-top: 80px;
+}
+
+.loader {
+  margin-left: auto;
+  margin-right: auto;
+ -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  z-index: 2000;
+  width: 60px;
+  height: 60px;
+  border: solid 6px transparent;
+  border-top-color: #b5b5b5;
+  border-bottom-color: #b5b5b5;
+  border-radius: 60px;
+  -webkit-animation: loader-spinner 2000ms linear infinite;
+  -moz-animation: loader-spinner 2000ms linear infinite;
+  -ms-animation: loader-spinner 2000ms linear infinite;
+  -o-animation: loader-spinner 2000ms linear infinite;
+  animation: loader-spinner 2000ms linear infinite;
+}
+
+@-webkit-keyframes loader-spinner {
+  0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-moz-keyframes loader-spinner {
+  0% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-o-keyframes loader-spinner {
+  0% { -o-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-ms-keyframes loader-spinner {
+  0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes loader-spinner {
+  0% { transform: rotate(0deg); transform: rotate(0deg); }
+  100% { transform: rotate(360deg); transform: rotate(360deg); }
+}
+
