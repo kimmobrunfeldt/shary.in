@@ -31,7 +31,7 @@ $(function() {
     var dropzone = new Dropzone('#dropzone');
 
     dropzone.on('success', function(file, response) {
-        window.location.href = response.hash;
+        window.location.href = response.name;
     });
 
     dropzone.on('sending', function(file) {
