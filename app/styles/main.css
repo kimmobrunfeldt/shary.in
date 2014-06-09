@@ -71,7 +71,8 @@ body {
 }
 
 .loader-container {
-  margin-top: 80px;
+  height: 105px;
+  padding-top: 45px;
 }
 
 .loader {
