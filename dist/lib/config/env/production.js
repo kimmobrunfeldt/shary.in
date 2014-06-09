@@ -3,7 +3,7 @@
 var path = require('path');
 
 module.exports = {
-  root: path.normalize(__dirname + '/../../../dist'),
+  root: path.normalize(__dirname + '../../..'),
   env: 'production',
   mongo: {
     uri: process.env.MONGOLAB_URI ||
