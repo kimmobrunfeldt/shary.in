@@ -40,11 +40,9 @@ $(function() {
 
     dropzone.on('error', function(file, errorMessage) {
         window.alert(errorMessage);
-        resetView();
     });
 
     dropzone.on('complete', function(file, errorMessage) {
-        resetView();
     });
 
 });
