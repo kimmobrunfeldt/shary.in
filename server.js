@@ -30,7 +30,10 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 
 var app = express();
 app.use(multer({
-    dest: config.uploadsDir,
+    // By default, system's tmp dir is used. However you can set the temp
+    // dir to specific location.
+    // dest: config.uploadsDir,
+
     limits: {
         fileSize: 1024 * 1024 * 10  // 10 MB
     }
