@@ -1,12 +1,12 @@
 function fadeToLoader() {
     $('#dropzone').fadeOut(function() {
-        $('.loader').removeClass('hidden').fadeIn();
+        $('.loader-container').removeClass('hidden').fadeIn();
     });
 }
 
 
 function resetView() {
-    $('.loader').addClass('hidden');
+    $('.loader-container').addClass('hidden');
     $('#dropzone').show();
 }
 
