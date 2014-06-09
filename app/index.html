@@ -7,16 +7,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title>Simplest Imagebin</title>
-    <meta name="description" content="">
+    <title>Shary</title>
+    <meta name="description" content="Mobile pastebin for images but much simpler and faster. After upload, you'll be redirected to a nice and short url which contains your image. Smooth and fast.">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- Image designed by Mun May Tee from the Noun Project -->
+    <link rel="icon" href="favicon.png"/>
+
     <!-- build:css(app) styles/vendor.css -->
+
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100italic,100' rel='stylesheet' type='text/css'>
+
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/vendor/reset.css">
     <link rel="stylesheet" href="styles/vendor/colors.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -28,15 +34,24 @@
 
     <!-- Add your site or application content here -->
     <div class="container">
-
-      <form id="dropzone" action="/api/upload/" class="opacity-animate dropzone">
-        <div class="fallback">
-          <input name="file" type="file" accept="image/*" />
-        </div>
-      </form>
-      <div class="loader-container">
-        <div class="loader hidden"></div>
+      <div class="header">
+        <header>Shary</header>
+        <p>Mobile pastebin for images</p>
       </div>
+
+      <div class="upload-container">
+        <form id="dropzone" action="/api/upload/" class="opacity-animate dropzone">
+          <div class="fallback">
+            <input name="file" type="file" accept="image/*" />
+          </div>
+        </form>
+        <p>Images in shary.in may be deleted in a few minutes after upload</p>
+        <div class="loader-container">
+          <div class="loader hidden"></div>
+        </div>
+      </div>
+
+
     </div>
 
     <!-- Google Analytics -->
@@ -59,13 +74,11 @@
 
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/dropzone/downloads/dropzone.min.js"></script>
     <!-- endbower -->
 
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/jquery.filestyle.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
 </body>

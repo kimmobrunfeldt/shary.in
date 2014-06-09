@@ -1,17 +1,49 @@
 body {
+  font-family: 'Roboto', sans-serif;
+  min-width: 300px;
 }
 
 .container {
-  padding-top: 50px;
+  padding-top: 20px;
+
+}
+
+.header {
   text-align: center;
 }
 
-.opacity-animate {
-  -webkit-transition: opacity 300ms linear;
-  -moz-transition: opacity 300ms linear;
-  -o-transition: opacity 300ms linear;
-  -ms-transition: opacity 300ms linear;
-  transition: opacity 300ms linear;
+.header > header {
+  font-size: 6.5em;
+  margin-bottom: 0.2em;
+}
+
+.header > p {
+  font-style: italic;
+  font-size: 1.3em;
+  font-weight: 100;
+}
+
+.intro > p {
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  font-weight: 100;
+  margin: 0;
+}
+
+
+.upload-container {
+  margin-top: 100px;
+  width: 80%;
+  max-width: 500px;
+  min-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.upload-container > p {
+  color: #333;
+  font-size: 0.8em;
+  margin: 15px 0 5px 0;
 }
 
 .dropzone:hover {
@@ -21,20 +53,16 @@ body {
 
 .dropzone {
   display: table;
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
 
   background-color: #008cba;
   color: white;
-  height: 200px;
-  width: 80%;
-  max-width: 500px;
-  min-width: 240px;
+  height: 150px;
+  width: 100%;
 }
 
 .dropzone span {
-  font-size: 4em;
+  font-size: 3em;
 }
 
 .dz-message {
@@ -89,3 +117,16 @@ body {
   100% { transform: rotate(360deg); transform: rotate(360deg); }
 }
 
+
+.opacity-animate {
+  -webkit-transition: opacity 300ms linear;
+  -moz-transition: opacity 300ms linear;
+  -o-transition: opacity 300ms linear;
+  -ms-transition: opacity 300ms linear;
+  transition: opacity 300ms linear;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
