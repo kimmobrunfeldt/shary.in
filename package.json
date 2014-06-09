@@ -1,5 +1,5 @@
 {
-  "name": "simplest-imagebin",
+  "name": "shary",
   "version": "0.1.0",
   "dependencies": {
     "connect-mongo": "~0.4.0",
