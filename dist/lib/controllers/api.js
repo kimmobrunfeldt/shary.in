@@ -48,7 +48,14 @@ exports.upload = function(req, res) {
 
                 // Remove temporary file
                 fs.unlink(uploadFile.path);
-                res.send(file);
+
+                if (req.query.redirect === 'true') {
+                    // Support older browsers by returning redirect
+                    res.redirect('/' + file.name);
+                } else {
+                    res.send(file);
+                }
+
             });
         });
 
