@@ -24,6 +24,7 @@
     <!-- build:css(app) styles/vendor.css -->
 
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/dropzone/downloads/css/dropzone.css" />
     <!-- endbower -->
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100italic,100' rel='stylesheet' type='text/css'>
@@ -48,9 +49,10 @@
       </div>
 
       <div class="upload-container">
-        <form id="dropzone" action="/api/upload/" class="opacity-animate dropzone">
+        <form id="dropzone" method="POST" action="/api/upload/?redirect=true" class="opacity-animate dropzone" enctype="multipart/form-data">
           <div class="fallback">
             <input name="file" type="file" accept="image/*" />
+            <input type="submit" name="submit" />
           </div>
         </form>
         <div class="loader-container hidden">

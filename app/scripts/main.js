@@ -22,7 +22,8 @@ $(function() {
         previewsContainer: '#hidden',
         fallback: function() {
             $('#dropzone').css('color', 'black').css('background-color', 'white');
-        }
+        },
+        forceFallback: true
     };
 
     // Disabling autoDiscover, otherwise Dropzone will try to attach twice.
@@ -46,4 +47,3 @@ $(function() {
     });
 
 });
-
