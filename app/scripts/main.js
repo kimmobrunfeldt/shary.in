@@ -23,6 +23,8 @@ window.onpageshow = function(event) {
     }
 };
 
+window.onunload = function() {};  // Prevent back button cache
+
 $(function() {
 
     $('html').removeClass('no-js');
