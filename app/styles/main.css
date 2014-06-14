@@ -17,10 +17,29 @@ body {
   margin-bottom: 0.2em;
 }
 
-.header > p {
+.header > .slogan {
   font-style: italic;
   font-size: 1.3em;
   font-weight: 100;
+}
+
+.support-container {
+  margin-top: 45px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-style: normal;
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+.support-container .check-mark {
+  width: 50px;
+  height: 50px;
+}
+
+.support-container .support-text {
+  margin-top: -5px;
 }
 
 .intro > p {
@@ -30,9 +49,8 @@ body {
   margin: 0;
 }
 
-
 .upload-container {
-  margin-top: 80px;
+  margin-top: 10px;
   width: 80%;
   max-width: 500px;
   min-width: 240px;
@@ -44,6 +62,19 @@ body {
   color: #666;
   font-size: 0.8em;
   margin: 15px 0 5px 0;
+}
+
+.upload-container input {
+  display: block;
+}
+
+.upload-container input:first-child {
+  margin-top: 30px;
+}
+
+/* Fallback submit button */
+.upload-button {
+    margin-top: 10px;
 }
 
 .dropzone:hover {
@@ -59,6 +90,12 @@ body {
   color: white;
   height: 150px;
   width: 100%;
+}
+
+.no-js .dropzone {
+  color: black;
+  background-color: #eee;
+  border: 1px solid #ccc;
 }
 
 .dropzone span {

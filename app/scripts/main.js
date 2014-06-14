@@ -1,18 +1,26 @@
+ var _ = {};
+
+ _.has = function(obj, key) {
+    return hasOwnProperty.call(obj, key);
+};
+
 function fadeToLoader() {
-    $('#dropzone').fadeOut(function() {
-        $('.loader-container').removeClass('hidden').fadeIn();
-    });
+    $('#dropzone').addClass('hidden');
+    $('.loader-container').removeClass('hidden');
 }
 
 
 function resetView() {
+    $('#dropzone').removeClass('hidden');
     $('.loader-container').addClass('hidden');
-    $('#dropzone').show();
 }
 
 $(function() {
 
+    $('html').removeClass('no-js');
+
     Dropzone.options.dropzone = {
+        url: "/api/upload",  // Override the fallback which will pas redirect parameter
         paramName: 'file',  // The name that will be used to transfer the file
         maxFiles: 1,
         maxFilesize: 10,  // MB
@@ -21,7 +29,7 @@ $(function() {
         createImageThumbnails: false,
         previewsContainer: '#hidden',
         fallback: function() {
-            $('#dropzone').css('color', 'black').css('background-color', 'white');
+            $('html').addClass('no-js');
         }
     };
 
@@ -31,6 +39,11 @@ $(function() {
     var dropzone = new Dropzone('#dropzone');
 
     dropzone.on('success', function(file, response) {
+        if (response.name === undefined) {
+            window.alert('Unknown error while uploading');
+            return;
+        }
+
         window.location.href = response.name;
     });
 
@@ -39,10 +52,16 @@ $(function() {
     });
 
     dropzone.on('error', function(file, errorMessage) {
-        window.alert(errorMessage);
+        if (_.has(errorMessage, 'error') && _.has(errorMessage.error, 'message')) {
+            window.alert('Error from server: ' + errorMessage.error.message);
+        } else {
+            window.alert(errorMessage.toString());
+        }
+        resetView();
     });
 
     dropzone.on('complete', function(file, errorMessage) {
+        dropzone.removeAllFiles();
     });
 
 });
