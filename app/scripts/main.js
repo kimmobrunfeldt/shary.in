@@ -15,6 +15,14 @@ function resetView() {
     $('.loader-container').addClass('hidden');
 }
 
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        // Page is loaded from browser back cache
+        // This happens when back button is pressed in mobile browsers
+        resetView();
+    }
+};
+
 $(function() {
 
     $('html').removeClass('no-js');
@@ -57,6 +65,7 @@ $(function() {
         } else {
             window.alert(errorMessage.toString());
         }
+
         resetView();
     });
 
