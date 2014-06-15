@@ -40,7 +40,7 @@ $(function() {
         url: "/api/upload",  // Override the fallback which will pas redirect parameter
         paramName: 'file',  // The name that will be used to transfer the file
         maxFiles: 1,
-        maxFilesize: 50,  // MB
+        maxFilesize: 100,  // MB
         acceptedFiles: 'video/*,image/*,audio/*',
         dictDefaultMessage: 'Upload image',
         createImageThumbnails: false,
@@ -72,7 +72,7 @@ $(function() {
         // any progress information, it is better to show generic loader spinner
         unknownProgressTimer = setTimeout(function showLoader() {
             showElement('.loader-container');
-        }, 2000);
+        }, 5000);
     });
 
     dropzone.on('error', function(file, errorMessage) {
