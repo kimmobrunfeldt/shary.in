@@ -41,7 +41,7 @@ $(function() {
         paramName: 'file',  // The name that will be used to transfer the file
         maxFiles: 1,
         maxFilesize: 100,  // MB
-        acceptedFiles: 'video/*,image/*,audio/*',
+        acceptedFiles: 'image/*',
         dictDefaultMessage: 'Upload image',
         createImageThumbnails: false,
         previewsContainer: '#hidden',
