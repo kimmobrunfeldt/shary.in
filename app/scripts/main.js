@@ -17,6 +17,7 @@ function showElement(className) {
 
 function reset() {
     showElement('.dropzone');
+    $('#progress').val(0).trigger('change');
 }
 
 window.onpageshow = function(event) {
@@ -38,7 +39,7 @@ $(function() {
         paramName: 'file',  // The name that will be used to transfer the file
         maxFiles: 1,
         maxFilesize: 50,  // MB
-        acceptedFiles: 'video/*,image/*',
+        acceptedFiles: 'video/*,image/*,audio/*',
         dictDefaultMessage: 'Upload image',
         createImageThumbnails: false,
         previewsContainer: '#hidden',
