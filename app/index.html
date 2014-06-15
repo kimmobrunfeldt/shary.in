@@ -26,7 +26,7 @@
     <!-- bower:css -->
     <!-- endbower -->
 
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100italic,100' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic' rel='stylesheet' type='text/css'>
 
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -55,15 +55,23 @@
       </div>
 
       <div class="upload-container">
-        <form id="dropzone" method="POST" action="/api/upload/?redirect=true" class="opacity-animate dropzone" enctype="multipart/form-data">
+        <form class="upload-item opacity-animate dropzone" id="dropzone" method="POST" action="/api/upload/?redirect=true"  enctype="multipart/form-data">
           <div class="fallback">
-            <input name="file" type="file" accept="image/*" />
+            <input name="file" type="file" accept="video/*,image/*" />
             <input class="upload-button" type="submit" name="submit" value="Upload image" />
           </div>
         </form>
-        <div class="loader-container hidden">
+
+        <div class="upload-item progress-container hidden">
+          <div class="progress">
+            <input id="progress" class="knob" data-thickness=".1" data-width="92" readonly data-fgColor="#008cba" data-displayInput=false value="0">
+          </div>
+        </div>
+
+        <div class="upload-item loader-container hidden">
           <div class="loader"></div>
         </div>
+
         <p>After upload you'll be redirected to the image. Anyone can view it with a link. Image may be deleted in a few hours after upload.</p>
       </div>
 
@@ -91,6 +99,7 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/retina.js/dist/retina.js"></script>
+    <script src="bower_components/jquery-knob/js/jquery.knob.js"></script>
     <!-- endbower -->
 
     <!-- endbuild -->

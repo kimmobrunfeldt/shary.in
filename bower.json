@@ -5,7 +5,8 @@
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
     "jquery": "~2.1.0",
-    "retina.js": "https://github.com/jvannistelrooy/retinajs.git#patch-1"
+    "retina.js": "https://github.com/jvannistelrooy/retinajs.git#patch-1",
+    "jquery-knob": "~1.2.8"
   },
   "devDependencies": {},
   "testPath": "test/client/spec"
