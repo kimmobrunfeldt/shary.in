@@ -32,6 +32,8 @@ window.onunload = function() {};  // Prevent back button cache
 
 $(function() {
 
+    var unknownProgressTimer;
+
     $('html').removeClass('no-js');
 
     Dropzone.options.dropzone = {
@@ -65,6 +67,12 @@ $(function() {
 
     dropzone.on('sending', function(file) {
         showElement('.progress-container');
+
+        // We try to show progress in the bar, but if we don't get
+        // any progress information, it is better to show generic loader spinner
+        unknownProgressTimer = setTimeout(function showLoader() {
+            showElement('.loader-container');
+        }, 2000);
     });
 
     dropzone.on('error', function(file, errorMessage) {
@@ -72,6 +80,10 @@ $(function() {
             window.alert('Error from server: ' + errorMessage.error.message);
         } else {
             window.alert(errorMessage.toString());
+        }
+
+        if (unknownProgressTimer) {
+            clearTimeout(unknownProgressTimer);
         }
 
         reset();
@@ -82,6 +94,10 @@ $(function() {
     });
 
     dropzone.on('uploadprogress', function(file, percent) {
+        if (unknownProgressTimer) {
+            clearTimeout(unknownProgressTimer);
+        }
+
         $('#progress').val(percent).trigger('change');
     });
 
