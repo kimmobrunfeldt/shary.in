@@ -1,0 +1,100 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>Shary</title>
+    <meta name="viewport" content="width=device-width">
+    <!-- Image designed by Pham Thi Dieu Linh from the Noun Project -->
+    <link rel="icon" href="favicon.png"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
+    <style>
+      body, html, img, div, input, p  {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        font-family: 'Roboto', sans-serif;
+        width: 100%;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+      }
+
+      img {
+        width: 100%;
+        border: 5px solid #eee;
+        margin-top: 40px;
+      }
+
+      .link-container > p {
+        width: 100%;
+        text-align: center;
+        font-size: 2em;
+      }
+
+      input {
+        font-family: 'Arial', sans-serif;
+        font-weight: 100;
+        text-align: center;
+        font-size: 1.2em;
+        width: 100%;
+        height: 40px;
+        border: 0;
+        padding: 3px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="link-container">
+      <p>Share this link</p>
+      <input type="text" name="link" value="<%= imageUrl %>">
+    </div>
+
+    <div class="image-container">
+      <img src="<%= imageUrl %>" alt="">
+    </div>
+  </div>
+
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-49684224-1', 'shary.in');
+      ga('send', 'pageview');
+
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/retina.js/dist/retina.js"></script>
+    <script src="bower_components/jquery-knob/js/jquery.knob.js"></script>
+
+</body>
+</html>
