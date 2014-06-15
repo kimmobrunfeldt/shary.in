@@ -81,7 +81,8 @@ module.exports = function (grunt) {
         ],
 
         options: {
-          livereload: true
+          livereload: true,
+          hostname: '0.0.0.0'
         }
       },
       express: {
