@@ -62,7 +62,7 @@ $(function() {
         }
 
         showElement('.loader-container');
-        window.location.href = response.name;
+        window.location.href = response.baseName;
     });
 
     dropzone.on('sending', function(file) {
