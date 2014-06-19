@@ -37,8 +37,10 @@
       }
 
       img {
-        width: 100%;
-        border: 1px solid #ddd;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        max-width: 100%;
         margin-top: 40px;
       }
 
@@ -55,7 +57,7 @@
       }
 
       input {
-        color: #555;
+        color: #008cba;
         font-family: 'Arial', sans-serif;
         font-weight: 100;
         text-align: center;
@@ -102,8 +104,6 @@
 
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/retina.js/dist/retina.js"></script>
-    <script src="bower_components/jquery-knob/js/jquery.knob.js"></script>
 
     <script type="text/javascript">
     function select() {
@@ -113,6 +113,13 @@
     }
 
     window.onload = select;
+
+
+    var originalLink = $('#link').val();
+    $('#link').on('input propertychange', function() {
+        $(this).val(originalLink);
+    });
+
     </script>
 
 </body>
