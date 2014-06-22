@@ -39,7 +39,7 @@ $(function() {
     Dropzone.options.dropzone = {
         url: "/api/upload",  // Override the fallback which will pas redirect parameter
         paramName: 'file',  // The name that will be used to transfer the file
-        maxFiles: 2,
+        maxFiles: 1,
         maxFilesize: 100,  // MB
         acceptedFiles: 'image/*',
         dictDefaultMessage: 'Upload image',
