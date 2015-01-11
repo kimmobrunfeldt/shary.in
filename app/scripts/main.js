@@ -6,7 +6,7 @@ var DROPZONE_OPTIONS = {
     url: "https://shary.herokuapp.com/api/upload",
     paramName: 'file',  // The name that will be used to transfer the file
     maxFiles: 1,
-    maxFilesize: 100,  // MB
+    maxFilesize: 300,  // MB
     dictDefaultMessage: '',
     createImageThumbnails: false,
     previewsContainer: '#dropzone__hidden',
@@ -69,6 +69,10 @@ function initDropzone(rotatingBar) {
     });
 
     dropzone.on('error', function(file, errorMessage) {
+        if (errorMessage.indexOf('Upload canceled.') === -1) {
+            window.alert(errorMessage);
+        }
+
         uploadFinally(true);
     });
 
