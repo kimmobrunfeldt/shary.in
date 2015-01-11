@@ -70,6 +70,7 @@ function initDropzone(rotatingBar) {
 
     dropzone.on('error', function(file, errorMessage) {
         if (errorMessage.indexOf('Upload canceled.') === -1) {
+            dropzone.removeAllFiles();
             window.alert(errorMessage);
         }
 
