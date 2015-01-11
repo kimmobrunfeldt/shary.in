@@ -1,59 +1,62 @@
- var _ = {};
+window.onload = onLoad;
 
- _.has = function(obj, key) {
-    return hasOwnProperty.call(obj, key);
-};
+// Disabling autoDiscover, otherwise Dropzone will try to attach twice
+Dropzone.autoDiscover = false;
+var DROPZONE_OPTIONS = {
+    url: "https://shary.herokuapp.com/api/upload",
+    paramName: 'file',  // The name that will be used to transfer the file
+    maxFiles: 1,
+    maxFilesize: 100,  // MB
+    dictDefaultMessage: '',
+    createImageThumbnails: false,
+    previewsContainer: '#dropzone__hidden',
 
-var elements = ['.dropzone', '.progress-container', '.loader-container'];
-
-
-function showElement(className) {
-    for (var i = 0; i < elements.length; ++i) {
-        $(elements[i]).addClass('hidden');
-    }
-
-    $(className).removeClass('hidden');
 }
 
-function reset() {
-    showElement('.dropzone');
-    $('#progress').val(0).trigger('change');
+function onLoad() {
+    var rotatingBar = initProgressBar('#file-picker__progress');
+    initDropzone(rotatingBar);
 }
 
-window.onpageshow = function(event) {
-    if (event.persisted) {
-        // Page is loaded from browser back cache
-        // This happens when back button is pressed in mobile browsers
-        reset();
+function initProgressBar(container) {
+    var Shape = ProgressBar.Circle;
+
+    var rotatingBar = new RotatingProgressBar(Shape, container, {
+        color: '#333',
+        trailColor: '#eee',
+        strokeWidth: 1,
+        duration: 500
+    });
+    rotatingBar.bar.set(1);
+
+    return rotatingBar;
+}
+
+function initDropzone(rotatingBar) {
+    Dropzone.options.dropzone = DROPZONE_OPTIONS;
+    var dropzone = new Dropzone('#dropzone');
+    var picker = document.querySelector('.file-picker');
+    var overlay = document.querySelector('.file-picker__overlay');
+    overlay.onclick = function() {
+        dropzone.removeAllFiles(true);
     }
-};
 
-window.onunload = function() {};  // Prevent back button cache
+    var animateThrottled = _.throttle(
+        _.bind(rotatingBar.bar.animate, rotatingBar.bar),
+        500
+    );
 
-$(function() {
+    dropzone.on('sending', function(file) {
+        setLink('');
+        addClass(picker, 'uploading');
 
-    var unknownProgressTimer;
+        rotatingBar.bar.set(0.05);
+        rotatingBar.rotate();
+    });
 
-    $('html').removeClass('no-js');
-
-    Dropzone.options.dropzone = {
-        url: "/api/upload",  // Override the fallback which will pas redirect parameter
-        paramName: 'file',  // The name that will be used to transfer the file
-        maxFiles: 1,
-        maxFilesize: 100,  // MB
-        acceptedFiles: 'image/*',
-        dictDefaultMessage: 'Upload image',
-        createImageThumbnails: false,
-        previewsContainer: '#hidden',
-        fallback: function() {
-            $('html').addClass('no-js');
-        }
-    };
-
-    // Disabling autoDiscover, otherwise Dropzone will try to attach twice.
-    Dropzone.autoDiscover = false;
-
-    var dropzone = new Dropzone('.dropzone');
+    dropzone.on('uploadprogress', function(file, percent) {
+        animateThrottled(percent / 100);
+    });
 
     dropzone.on('success', function(file, response) {
         if (response.name === undefined) {
@@ -61,45 +64,81 @@ $(function() {
             return;
         }
 
-        showElement('.loader-container');
-        window.location.href = response.baseName;
-    });
-
-    dropzone.on('sending', function(file) {
-        showElement('.progress-container');
-
-        // We try to show progress in the bar, but if we don't get
-        // any progress information, it is better to show generic loader spinner
-        unknownProgressTimer = setTimeout(function showLoader() {
-            showElement('.loader-container');
-        }, 5000);
+        var url = 'http://shary.in/' + response.name;
+        uploadFinally(false, url);
     });
 
     dropzone.on('error', function(file, errorMessage) {
-        if (_.has(errorMessage, 'error') && _.has(errorMessage.error, 'message')) {
-            window.alert('Error from server: ' + errorMessage.error.message);
+        uploadFinally(true);
+    });
+
+    function uploadFinally(err, url) {
+        animateThrottled.cancel();
+
+        if (err) {
+            rotatingBar.bar.set(1);
+            activateFilePicker();
         } else {
-            window.alert(errorMessage.toString());
+            rotatingBar.bar.animate(1, function() {
+                dropzone.removeAllFiles();
+                activateFilePicker();
+                setLink(url);
+            });
         }
+    }
 
-        if (unknownProgressTimer) {
-            clearTimeout(unknownProgressTimer);
+    function activateFilePicker() {
+        removeClass(picker, 'uploading');
+        rotatingBar.stopRotating();
+    }
+}
+
+function setLink(url) {
+    var aElement = document.querySelector('#file-link');
+    setText(aElement, url);
+    aElement.title = url;
+    aElement.href = url;
+}
+
+// Small wrapper for ProgressBar
+
+var RotatingProgressBar = function RotatingProgressBar(Shape, container, opts) {
+    this._container = document.querySelector(container);
+    this.bar = new Shape(container, opts);
+};
+
+RotatingProgressBar.prototype.rotate = function rotate() {
+    addClass(this._container, 'rotating');
+};
+
+RotatingProgressBar.prototype.stopRotating = function stopRotating() {
+    removeClass(this._container, 'rotating');
+};
+
+
+// Utils
+
+function addClass(element, addName) {
+    var classNames = element.className.split(' ');
+    if (classNames.indexOf(addName) !== -1) {
+        return;
+    }
+
+    element.className += ' ' + addName;
+}
+
+function removeClass(element, removeName) {
+    var newClasses = [];
+    var classNames = element.className.split(' ');
+    for (var i = 0; i < classNames.length; ++i) {
+        if (classNames[i] !== removeName) {
+            newClasses.push(classNames[i]);
         }
+    }
 
-        reset();
-    });
+    element.className = newClasses.join(' ');
+}
 
-    dropzone.on('complete', function(file, errorMessage) {
-        dropzone.removeAllFiles();
-    });
-
-    dropzone.on('uploadprogress', function(file, percent) {
-        if (unknownProgressTimer) {
-            clearTimeout(unknownProgressTimer);
-        }
-
-        $('#progress').val(percent).trigger('change');
-    });
-
-    $('.knob').knob();
-});
+function setText(element, text) {
+    element.textContent = text;
+}
