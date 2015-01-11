@@ -330,6 +330,12 @@ module.exports = function (grunt) {
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
       },
+      html: {
+        expand: true,
+        cwd: '<%= yeoman.app %>',
+        dest: '<%= yeoman.dist %>',
+        src: '*.html'
+      },
       uploads: {
         expand: true,
         cwd: 'uploads',
@@ -356,7 +362,8 @@ module.exports = function (grunt) {
         }
       },
       dist: [
-        'copy:styles'
+        'copy:styles',
+        'copy:html',
       ]
     },
 
