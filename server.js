@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express'),
+    cors = require('cors'),
     path = require('path'),
     fs = require('fs'),
     mongoose = require('mongoose');
@@ -35,9 +36,10 @@ app.use(multer({
     // dest: config.uploadsDir,
 
     limits: {
-        fileSize: 1024 * 1024 * 10  // 10 MB
+        fileSize: 1024 * 1024 * 100  // 10 MB
     }
 }));
+app.use(cors());
 
 // Express settings
 require('./lib/config/express')(app);
